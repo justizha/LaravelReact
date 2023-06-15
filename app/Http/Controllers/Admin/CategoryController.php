@@ -21,7 +21,7 @@ class CategoryController extends Controller
                         'id' => $categories->id,
                         'name' => $categories->name,
                         'slug' => $categories->slug,
-                        'edit_url' => route('categoryEdit',$categories)
+                        'edit_url' => route('categoriesEdit',$categories)
                     ];
                 }),
                 'create_url' => route('CategoryForm'),
@@ -54,9 +54,22 @@ class CategoryController extends Controller
 
     }
 
-    public function edit(){
+    public function edit(Category $category){
             $user = Auth::user();
-            return Inertia::render('');
+            return Inertia::render('Admin/CategoryEdit',[
+            'user'=>$user,
+            'category' => $category
+        ]);
+    }
+    public function update(Request $request,Category $category){
+        $validatedData = $request->validate([
+            'name' => 'required|max:30',
+            'slug' => 'required|max:30',
+        ]);
+
+        $category->update($validatedData);
+
+        return to_route('categories');
     }
 
 }

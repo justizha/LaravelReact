@@ -31,7 +31,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/adminDashboard/Category/Add',[CategoryController::class,'create'])->name('CategoryForm');
         Route::post('/adminDashboard/Category', [CategoryController::class, 'store'])->name('category');
         Route::delete('/categories/{category}',[CategoryController::class,'destroy'])->name('deleteCategory');
-        Route::get('/adminDashboard/Edit',[CategoryController::class,'edit'])->name('categoryEdit');
+        Route::get('/adminDashboard/{category}/Edit',[CategoryController::class,'edit'])->name('categoriesEdit');
+        Route::put('/adminDashboard/{category}/Update',[CategoryController::class,'update'])->name('UpdateCategory');
 
     });
     Route::group(['middleware' => 'checkRole:user'], function() {

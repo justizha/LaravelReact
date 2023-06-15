@@ -1,6 +1,6 @@
 import NavAdminDashboard from '@/Components/NavAdminDashboard';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { router, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 
 const Category = () => {
     const { categories } = usePage().props;
@@ -9,19 +9,22 @@ const Category = () => {
             router.delete(route('deleteCategory', categoryId))
         }
     }
+    // const handleUpdate = (categoryId) => {
+    //     router.
+    // }
     return (
         <AuthenticatedLayout>
             <NavAdminDashboard />
             <div className="py-12">
                 <h1 className='text-center font-bold text-3xl dark:text-white mb-5'>Manage Categories</h1>
-                <div className='flex justify-end mr-10'>
-                    <button className="items-center flex px-4 py-4 font-sans font-semibold  text-white bg-blue-600 mb-3 rounded-lg h-[30px] hover:scale-110 hover:bg-blue-400 hover:text-slate-100">
-                        <a href={route('CategoryForm')}>Add New Categories</a>
-                    </button>
-                </div>
 
                 <div className="flex justify-center mx-auto sm:px-6 lg:px-8">
                     <div className='overflow-x-auto'>
+                        <div className='flex justify-end mr-3 mt-2'>
+                            <button className="items-center flex px-4 py-4 font-sans font-semibold  text-white bg-blue-600 mb-3 rounded-lg h-[30px] hover:scale-110 hover:bg-blue-400 hover:text-slate-100">
+                                <a href={route('CategoryForm')}>Add New Categories</a>
+                            </button>
+                        </div>
                         <table className="w-[650px] table-auto  bg-gray-200  rounded-md dark:bg-gray-700 overflow-x-auto">
                             <thead >
                                 <tr className=''>
@@ -46,7 +49,11 @@ const Category = () => {
                                                         <p>Delete</p>
                                                     </button>
                                                     <button className="bg-yellow-500 rounded-md w-full h-8 text-white hover:scale-110 focus:bg-yellow-400">
-                                                        <p>Update</p>
+                                                        <Link
+                                                            href={route('categoriesEdit', item.id)}
+                                                        >
+                                                            Update
+                                                        </Link>
                                                     </button>
                                                 </div>
                                             </td>
