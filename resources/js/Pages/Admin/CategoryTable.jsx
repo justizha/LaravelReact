@@ -9,9 +9,6 @@ const Category = () => {
             router.delete(route('deleteCategory', categoryId))
         }
     }
-    // const handleUpdate = (categoryId) => {
-    //     router.
-    // }
     return (
         <AuthenticatedLayout>
             <NavAdminDashboard />
@@ -38,7 +35,6 @@ const Category = () => {
                                 {categories && categories.length > 0 ? (
                                     categories.map((item, index) => (
                                         <tr key={item.id} >
-
                                             <td className="px-6 py-4 dark:text-white">{index + 1}</td>
                                             <td className="px-6 py-4 dark:text-white">{item.name}</td>
                                             <td className="px-6 py-4 dark:text-white">{item.slug}</td>
@@ -66,10 +62,8 @@ const Category = () => {
                                         </td>
                                     </tr>
                                 )}
-
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
